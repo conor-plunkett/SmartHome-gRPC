@@ -571,7 +571,7 @@ public class ControllerGUI implements ActionListener {
 
 					@Override
 					public void onNext(CreateResponseMessage response) {
-						logger.info("Creating device with input parameters " + response.getItem());
+						logger.info(response.getItem());
 						System.out.println(response.getItem());
 					}
 
@@ -682,13 +682,12 @@ public class ControllerGUI implements ActionListener {
 					char c = (inputIntensity.charAt(i));
 					boolean letter = Character.isLetter(c);
 					if (letter == true) {
-						logger.info("ID numeric validation failed");
-						System.out.println("ERROR: Ensure ID is numeric");
+						logger.info("Itensity numeric validation failed");
+						System.out.println("ERROR: Ensure intensity is numeric (whole integer)");
 						return;
 					}
 				}
-				
-				
+								
 				// Handle responses
 				StreamObserver<IntensityResponseMessage> responseObserver = new StreamObserver<IntensityResponseMessage>() {
 
