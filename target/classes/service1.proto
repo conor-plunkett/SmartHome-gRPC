@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ds.service1";
+option java_outer_classname = "Service1Impl";
+
+package service1;
+
+// Interface exported by the server.
+service Service1 {
+	// Inspect Method (Unary)
+	rpc inspect(InspectRequestMessage) returns (InspectResponseMessage) {}
+  	// Delete Method (Server Streaming)
+	rpc delete(DeleteRequestMessage) returns (stream DeleteResponseMessage) {}
+	// Create Method (Client Streaming)
+  	rpc create(stream CreateRequestMessage) returns (CreateResponseMessage) {}
+  	// List Method (Server Streaming)
+  	rpc listdevicesconnected(ListRequestMessage) returns (stream ListResponseMessage) {}
+  	// Power Method (Unary)
+  	rpc power(PowerRequestMessage) returns (PowerResponseMessage) {}
+  	// Intensity Method (Client Streaming)
+  	rpc intensity(stream IntensityRequestMessage) returns (IntensityResponseMessage) {}
+
+}
+
+// Inspect method (Unary)
+message InspectRequestMessage {
+  int32 id = 1;
+}
+
+message InspectResponseMessage {
+  string item = 1;
+}
+
+// Delete method (Server streaming)
+message DeleteRequestMessage {
+	  int32 id = 1;
+	}
+
+message DeleteResponseMessage {
+	  string item = 1;
+	}
+
+// List Method (Server Streaming)
+message ListRequestMessage {
+	string input = 1;
+}
+
+message ListResponseMessage {
+	string item = 1;
+}
+
+// Create Method (Client Streaming)
+message CreateRequestMessage {
+	string item = 1;
+}
+
+message CreateResponseMessage {
+	string item = 1;
+}
+
+// Power Method (Unary)
+message PowerRequestMessage {
+	int32 id = 1;
+}
+
+message PowerResponseMessage {
+	string item = 1;
+}
+
+// Intensity Method (Client Streaming)
+message IntensityRequestMessage {
+	string item = 1;
+}
+
+message IntensityResponseMessage {
+	string item = 1;
+}
+
+// Device  structure
+message Device {
+	int32 id = 1;
+	string name = 2;
+	bool power = 3;
+	float intensity = 4;
+}
+

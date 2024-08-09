@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ds.service2";
+option java_outer_classname = "Service2Impl";
+
+package service2;
+
+// Interface exported by the server.
+service Service2 {
+  
+	// Set Temperature Method (Server Streaming)
+	rpc setTemperature(SetTemperatureRequestMessage) returns (stream SetTemperatureResponseMessage) {}
+	
+	rpc dehumidify(stream HumidifyRequestMessage) returns (stream HumidifyResponseMessage) {}
+	
+	rpc preset(stream PresetRequestMessage) returns (stream PresetResponseMessage) {}
+    
+}
+
+// Set Temperature Method (Server Streaming)
+message SetTemperatureRequestMessage {
+  float degree = 1;  
+}
+
+message SetTemperatureResponseMessage {
+  string item = 1;
+}
+
+// Dehumidify Home Method (Bidirectional Streaming)
+message HumidifyRequestMessage {
+	string item = 1;
+}
+
+message HumidifyResponseMessage {
+	string item = 1;
+}
+
+// Preset Method (Bidirectional Streaming)
+message PresetRequestMessage {
+	string item = 1;
+}
+
+message PresetResponseMessage {
+	string item = 1;
+}
+
+//Device  structure
+message Device {
+	int32 id = 1;
+	string name = 2;
+	bool power = 3;
+	float intensity = 4;
+}

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ds.service3";
+option java_outer_classname = "Service3Impl";
+
+package service3;
+
+// Interface exported by the server.
+service Service3 {
+	
+	  // Motion Sensor Actvity Method (Server Streaming)
+	  rpc motion(MotionRequestMessage) returns (stream MotionResponseMessage) {}
+	  // Camera Access Method (Unary)
+	  rpc camera(CameraRequestMessage) returns (CameraResponseMessage) {}    
+	  // Dim Window Method (Server Streaminig)
+	  rpc dim(DimRequestMessage) returns (stream DimResponseMessage) {}
+}
+
+// Motion Method (Server Streaming)
+message MotionRequestMessage {
+  int32 id = 1;  
+}
+
+message MotionResponseMessage {
+	string report = 1;
+}
+
+message MotionSensor {
+	int32 id = 1;
+	string location = 2;
+	bool power = 3;
+	string activity = 4;
+	string activity2 = 5;
+}
+
+// Camera Method (Unary)
+message CameraRequestMessage {
+	int32 id = 1;
+}
+
+message CameraResponseMessage {
+	string activity = 1;
+}
+
+message Camera {
+	int32 id = 1;
+	string view = 2;
+}
+
+// Dim Method (Server Streaming)
+message DimRequestMessage {
+	float dimness = 1;
+}
+
+message DimResponseMessage {
+	string result = 1;
+}
